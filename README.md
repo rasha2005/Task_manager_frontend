@@ -10,11 +10,6 @@
 
 ## Setup
 
-Go to the frontend folder:
-
-```bash
-cd frontend
-```
 
 Install dependencies:
 
