@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const DashboardLayout = () => {
@@ -12,6 +12,13 @@ const DashboardLayout = () => {
     logout();
     navigate("/login");
   };
+
+  const navLinkClass = ({ isActive }) =>
+    `block rounded px-4 py-2 font-medium transition ${
+      isActive
+        ? "bg-slate-900 text-white"
+        : "text-slate-700 hover:bg-slate-100"
+    }`;
 
   return (
     <div className="min-h-screen bg-slate-100">
@@ -35,38 +42,26 @@ const DashboardLayout = () => {
       <div className="flex">
         <aside className="min-h-[calc(100vh-72px)] w-60 bg-white p-4 shadow">
           <nav className="space-y-2">
-            <Link
-              to="/dashboard"
-              className="block rounded px-4 py-2 hover:bg-slate-100"
-            >
+            <NavLink to="/dashboard" className={navLinkClass}>
               Dashboard
-            </Link>
+            </NavLink>
 
             {(user?.role === "admin" || user?.role === "manager") && (
-              <Link
-                to="/users"
-                className="block rounded px-4 py-2 hover:bg-slate-100"
-              >
+              <NavLink to="/users" className={navLinkClass}>
                 Users
-              </Link>
+              </NavLink>
             )}
 
             {(user?.role === "admin" || user?.role === "manager") && (
-              <Link
-                to="/tasks"
-                className="block rounded px-4 py-2 hover:bg-slate-100"
-              >
+              <NavLink to="/tasks" className={navLinkClass}>
                 Tasks
-              </Link>
+              </NavLink>
             )}
 
             {user?.role === "employee" && (
-              <Link
-                to="/my-tasks"
-                className="block rounded px-4 py-2 hover:bg-slate-100"
-              >
+              <NavLink to="/my-tasks" className={navLinkClass}>
                 My Tasks
-              </Link>
+              </NavLink>
             )}
           </nav>
         </aside>
