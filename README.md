@@ -1,6 +1,4 @@
-# Frontend
 
-Frontend for the Multi-Tenant Team Task Management System.
 
 ## Tech Stack
 
